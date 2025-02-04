@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #1c1c1f; /* Match the background color of your app */
+  }
+  
+  #root {
+    width: 100%;
+    height: 100%;
+  }
