@@ -13,7 +13,7 @@ const TitleCard = () => {
       textAlign: 'center',
       lineHeight: '120%',
     }}>
-      LeagueCoach
+      LeagueStats
     </h1>
   );
 };
