@@ -1,7 +1,7 @@
 # LeagueStats
-LeagueStats is a web application that allows players to analyze their League of Legends performance by fetching match data from the Riot API. It provides key statistics like CS per minute, deaths per minute, and vision score per minute, helping players track their gameplay efficiency.
+LeagueStats is a web application that helps players analyze their League of Legends performance by retrieving raw match data from the **Riot REST API** and processing it to generate key statistics, such as CS per minute, deaths per 10 minutes, and vision score per 10 minutes.
 
-![LeagueStats Preview](![LeagueStats](images/Preview.png))
+![LeagueStats Preview](images/Preview.png)
 
 **Tech used:**
 - **Frontend:** React, JavaScript, HTML, CSS
@@ -10,7 +10,7 @@ LeagueStats is a web application that allows players to analyze their League of 
 LeagueStats was built using **React** on the frontend and **Flask** on the backend.
 
 ## Optimizations
-One of the major optimizations in this project was **reducing API request time**. Initially, match data was fetched **sequentially**, causing delays when retrieving multiple games. These improvements made LeagueStats significantly **faster and more scalable**
+The biggest improvement was reducing API request time. Initially, match data was fetched sequentially, leading to unnecessary delays when retrieving multiple games. To solve this, I implemented **aiohttp** to allow multiple API requests to be processed in **parallel**.
 
 ✅ **Parallelized Riot API requests** → Fetch match history and all match data simultaneously. 
 
@@ -26,6 +26,7 @@ One of the major optimizations in this project was **reducing API request time**
 
 I wouldn't recommend trying to run it because a API key is hard to get. I am not deploying because it only lasts 24 hours.
 
-- Generate a 24hr Riot API key and add it in `.env`: `RIOT_API_KEY=''`
+- Generate a 24hr Riot API key and add it in a `.env` in the backend folder (`RIOT_API_KEY=''`)
+- Install dependencies `pip install -r requirements.txt`
 - navigate to the frontend and run `npm start`
 - navigate to the backend and run `App.py`
