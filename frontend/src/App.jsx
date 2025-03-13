@@ -1,24 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Info from './components/Info';
 import TitleCard from './components/TitleCard';
 import Search from './components/Search';
+import Stats from './components/Stats';
 
 const App = () => {
+  const [stats, setStats] = useState(null); // Store fetched data
+
   return (
-    <div style={{
-      width: '100%',
-      minHeight: '100vh',
-      backgroundColor: '#1c1c1f',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      position: 'relative',
-    }}>
+    <div style={appStyles.container}>
       <TitleCard />
       <Info />
-      <Search />
+      <Search onSearch={setStats} /> {/* Pass setStats to collect data */}
+      <Stats stats={stats}/>
     </div>
   );
+};
+
+const appStyles = {
+  container: {
+    width: '100%',
+    minHeight: '100vh',
+    backgroundColor: '#1c1c1f',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    position: 'relative',
+  },
 };
 
 export default App;

@@ -1,0 +1,21 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.DS_Store
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn.lock
+
+# Logs
+*.log
+logs/
+*.sqlite3
+
+# VS Code
+.vscode/
