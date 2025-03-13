@@ -5,13 +5,13 @@ import Search from './components/Search';
 import Stats from './components/Stats';
 
 const App = () => {
-  const [stats, setStats] = useState(null); // Store fetched data
+  const [stats, setStats] = useState(null); 
 
   return (
     <div style={appStyles.container}>
       <TitleCard />
       <Info />
-      <Search onSearch={setStats} /> {/* Pass setStats to collect data */}
+      <Search onSearch={setStats} />
       <Stats stats={stats}/>
     </div>
   );

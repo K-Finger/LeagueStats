@@ -18,7 +18,7 @@ const Search = ({ onSearch = () => {} }) => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:5000/api/get-puuid`, {
+      const response = await axios.get(`http://localhost:5000/api/search`, {
         params: { game_name: gameName.trim(), tag_line: tagLine.trim() }
       });
 
@@ -57,7 +57,6 @@ const Search = ({ onSearch = () => {} }) => {
   );
 };
 
-// Styles
 const styles = {
   container: {
     position: 'relative',

@@ -14,12 +14,12 @@ CORS(app)
 
 RIOT_BASE_URL = "https://americas.api.riotgames.com"
 
-@app.route('/api/get-puuid', methods=['GET'])
-def get_puuid():
+@app.route('/api/search', methods=['GET'])
+def search():
     """
-    Fetch the PUUID of a given summoner name and their match history.
+    Entry point for search. Handles main logic 
 
-    This endpoint expects two query parameters: game_name and tag_line.
+    This endpoint expects two query parameters from the search bar: game_name and tag_line.
     It returns the PUUID and the match history of the summoner.
 
     Query Parameters:
@@ -27,9 +27,7 @@ def get_puuid():
     - tag_line (str): The tag line of the summoner.
 
     Returns:
-    - JSON response containing the PUUID and match history.
-    - 400 status code if game_name or tag_line is missing.
-    - 500 status code if there is an error with the API request.
+    - JSON response of the player's stats for the frontend to use.
     """
     game_name = request.args.get('game_name')
     tag_line = request.args.get('tag_line')
@@ -39,7 +37,7 @@ def get_puuid():
 
     try:
         puuid = fetch_puuid(game_name, tag_line)
-        stats = asyncio.run(fetch_match_history(puuid))  # Run async function
+        stats = asyncio.run(fetch_match_history(puuid))
         return jsonify(stats)
     except requests.exceptions.RequestException as e:
         return jsonify({'error': str(e)}), 500
@@ -91,7 +89,7 @@ async def fetch_match_data(session, match_id, puuid):
 
 async def fetch_match_history(puuid):
     """
-    Fetch the match history for a given PUUID asynchronously.
+    gets match history and calls fetch_match_data for each game. Compiles all stats.
 
     Parameters:
     - puuid (str): The PUUID of the summoner.
@@ -114,6 +112,7 @@ async def fetch_match_history(puuid):
     avg_deaths_per_min = sum(match["deaths_per_min"] for match in match_stats) / num_matches
     avg_vision_per_min = sum(match["vision_score_per_min"] for match in match_stats) / num_matches
 
+    # Returns stats to for search() to jsonify and send to frontend.
     return {
         "average_cs_per_min": avg_cs_per_min,
         "average_deaths_per_min": avg_deaths_per_min,
